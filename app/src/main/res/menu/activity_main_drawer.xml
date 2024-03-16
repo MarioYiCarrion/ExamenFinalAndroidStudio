@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/principalFragment"
+            android:icon="@drawable/baseline_home_24"
+            android:title="@string/menu_principal" />
+        <item
+            android:id="@+id/seguimientoFragment"
+            android:icon="@drawable/bebe"
+            android:title="@string/menu_seguimiento" />
+        <item
+            android:id="@+id/citasFragment"
+            android:icon="@drawable/citas"
+            android:title="@string/menu_citas" />
+        <item
+            android:id="@+id/medicionyPruebasFragment"
+            android:icon="@drawable/mediciones"
+            android:title="@string/menu_mediciones" />
+        <item
+            android:id="@+id/diarioFragment"
+            android:icon="@drawable/diario"
+            android:title="@string/menu_diario" />
+        <item
+            android:id="@+id/extras"
+            android:title="Extras">
+            <menu>
+                <item
+                    android:id="@+id/consejosFragment"
+                    android:icon="@drawable/pregunta"
+                    android:title="@string/menu_consejos" />
+                <item
+                    android:id="@+id/recordatoriosyAlertasFragment"
+                    android:icon="@drawable/alerta"
+                    android:title="@string/menu_recordatorios" />
+            </menu>
+        </item>
+    </group>
+</menu>
