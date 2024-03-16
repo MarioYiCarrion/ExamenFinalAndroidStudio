@@ -11,18 +11,28 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var editTextUsername: EditText
     private lateinit var editTextPassword: EditText
     private lateinit var buttonLogin: Button
+    private lateinit var buttonRegister: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         setContentView(R.layout.activity_login)
+
         editTextUsername = findViewById(R.id.editTextUsername)
         editTextPassword = findViewById(R.id.editTextPassword)
         buttonLogin = findViewById(R.id.buttonLogin)
+        buttonRegister = findViewById(R.id.buttonRegister)
+
         buttonLogin.setOnClickListener { login() }
+        buttonRegister.setOnClickListener {
+            // Iniciar la actividad de registro
+            startActivity(Intent(this, RegistroActivity::class.java))
+        }
     }
 
     private fun login() {
-        val username = editTextUsername!!.text.toString()
-        val password = editTextPassword!!.text.toString()
+        val username = editTextUsername.text.toString()
+        val password = editTextPassword.text.toString()
         if (username == "MarioYi" && password == "123456") {
             // Autenticación exitosa, iniciar MainActivity
             startActivity(Intent(this, MainActivity::class.java))
