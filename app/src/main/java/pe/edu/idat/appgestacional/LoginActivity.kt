@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         val username = editTextUsername.text.toString()
         val password = editTextPassword.text.toString()
-        if (username == "MarioYi" && password == "123456") {
+        if (username == "MarioYi" && password == "SYS123") {
             // Autenticación exitosa, iniciar MainActivity
             startActivity(Intent(this, MainActivity::class.java))
             finish() // Finaliza LoginActivity para que no pueda volver atrás
