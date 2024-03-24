@@ -1,47 +1,72 @@
 package pe.edu.idat.appgestacional
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
 
 class RegistroActivity : AppCompatActivity() {
 
-    private lateinit var buttonRegistrar: Button
+    private lateinit var editTextName: EditText
+    private  lateinit var editTextDNI: EditText
+    private  lateinit var editTextDireccion: EditText
+    private  lateinit var editTextCelular: EditText
+    private lateinit var editTextEmail: EditText
+    private lateinit var editTextUsername: EditText
+    private lateinit var editTextPassword: EditText
+    private lateinit var editTextConfirmPassword: EditText
+    private lateinit var buttonRegister: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
         setContentView(R.layout.activity_registro)
 
-        //para implemeentar que no se permita dejar espacios en usuario
-        val editTextUsername = findViewById<EditText>(R.id.editTextUsername)
+        // Inicialización de vistas
+        editTextName = findViewById(R.id.editTextName)
+        editTextDNI = findViewById(R.id.editTextDNI)
+        editTextDireccion = findViewById(R.id.editTextDireccion)
+        editTextCelular = findViewById(R.id.editTextCelular)
+        editTextEmail = findViewById(R.id.editTextEmail)
+        editTextUsername = findViewById(R.id.editTextUsername)
+        editTextPassword = findViewById(R.id.editTextPassword)
+        editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword)
+        buttonRegister = findViewById(R.id.buttonRegister)
 
-        editTextUsername.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // No se necesita implementación
-            }
+        // Configuración del listener de clic en el botón de registro
+        buttonRegister.setOnClickListener {
+            registerUser()
+        }
+    }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // No se necesita implementación
-            }
+    private fun registerUser() {
+        val name = editTextName.text.toString().trim()
+        val email = editTextEmail.text.toString().trim()
+        val username = editTextUsername.text.toString().trim()
+        val password = editTextPassword.text.toString().trim()
+        val confirmPassword = editTextConfirmPassword.text.toString().trim()
 
-            override fun afterTextChanged(s: Editable?) {
-                // Verificar y eliminar espacios en blanco al principio o al final
-                if (s != null && s.isNotEmpty() && (s.startsWith(" ") || s.endsWith(" "))) {
-                    editTextUsername.setText(s.trim()) // Eliminar espacios en blanco
-                    editTextUsername.setSelection(editTextUsername.text.length) // Colocar el cursor al final
-                }
-            }
-        }) //aca acaba la implementacion de espacios en blanco
-
-        buttonRegistrar = findViewById(R.id.buttonRegister)
-
-        buttonRegistrar.setOnClickListener{
-            startActivity(Intent(this, MainActivity::class.java))
+        // Validación de campos vacíos
+        if (name.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() ||
+            confirmPassword.isEmpty()) {
+            // Mostrar mensaje de error si algún campo está vacío
+            showToast("Por favor, completa todos los campos.")
+            return
         }
 
+        // Validar que las contraseñas coincidan
+        if (password != confirmPassword) {
+            // Mostrar mensaje de error si las contraseñas no coinciden
+            showToast("Las contraseñas no coinciden.")
+            return
+        }
+
+        // Mostrar mensaje de éxito si todos los campos son válidos
+        showToast("Usuario registrado correctamente.")
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
+
