@@ -88,13 +88,23 @@
         android:id="@+id/cita_medica_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="textMultiLine"
-        android:textColor="#000"
-        android:minLines="4"
+        android:layout_marginTop="16dp"
         android:hint="Ingresa el resultado de la cita médica"
+        android:inputType="textMultiLine"
+        android:minLines="4"
+        android:textColor="#000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cita_medica_label" />
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/btnregistrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cita_medica_edit_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
