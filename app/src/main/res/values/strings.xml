@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">AppGestacional</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_principal">Menu Principal</string>
+    <string name="menu_seguimiento">Seguimiento Gestacional</string>
+    <string name="menu_citas">Calendario de Citas</string>
+    <string name="menu_mediciones">Mediciones y Pruebas</string>
+    <string name="menu_diario">Diario de Seguimientos</string>
+    <string name="menu_consejos">Consejos y Recomendaciones</string>
+    <string name="menu_recordatorios">Recordatorios y Alertas</string>
+    <string name="PrinciaplMenu">Seguimiento Gestancional</string>
+    <string name="Nombre">Sistema Gestacional</string>
+    <string name="nomclinica">Clinica Internacional</string>
+</resources>
