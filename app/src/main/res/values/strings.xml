@@ -23,4 +23,6 @@
     <string name="Nombre">Sistema Gestacional</string>
     <string name="nomclinica">Clinica Internacional</string>
     <string name="btnregistrar">REGISTRAR</string>
+    <string name="olvidoclave">Cambiar Contraseña</string>
+    <string name="olvidoclavemsj">Ingrese su Correo</string>
 </resources>
