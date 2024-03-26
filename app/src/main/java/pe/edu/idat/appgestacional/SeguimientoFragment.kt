@@ -9,12 +9,12 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlin.math.ceil
-import kotlin.math.floor
 
 class SeguimientoFragment : Fragment() {
 
@@ -22,6 +22,7 @@ class SeguimientoFragment : Fragment() {
     private lateinit var fppTextView: TextView
     private lateinit var semanaGestacionTextView: TextView
     private lateinit var citaMedicaEditText: EditText
+    private lateinit var btnRegistrar: Button
 
     private val ultimaReglaCalendar = Calendar.getInstance()
     private val todayCalendar = Calendar.getInstance()
@@ -36,9 +37,14 @@ class SeguimientoFragment : Fragment() {
         fppTextView = view.findViewById(R.id.fpp_text_view)
         semanaGestacionTextView = view.findViewById(R.id.semana_gestacion_text_view)
         citaMedicaEditText = view.findViewById(R.id.cita_medica_edit_text)
+        btnRegistrar = view.findViewById(R.id.btnRegistrar)
 
         ultimaReglaEditText.setOnClickListener {
             mostrarDatePicker()
+        }
+
+        btnRegistrar.setOnClickListener {
+            guardarInformacion()
         }
 
         return view
@@ -88,6 +94,21 @@ class SeguimientoFragment : Fragment() {
 
         semanaGestacionTextView.text = "Tienes $diffWeeks Semanas de Gestacion"
     }
+
+    private fun guardarInformacion() {
+        val ultimaRegla = ultimaReglaEditText.text.toString()
+        val fpp = fppTextView.text.toString()
+        val semanaGestacion = semanaGestacionTextView.text.toString()
+        val citaMedica = citaMedicaEditText.text.toString()
+
+        // Construir el mensaje para mostrar en el Snackbar
+        val mensaje = "Información guardada:\n" +
+                "Última regla: $ultimaRegla\n" +
+                "FPP: $fpp\n" +
+                "Semana de gestación: $semanaGestacion\n" +
+                "Cita médica: $citaMedica"
+
+        // Mostrar el Snackbar con el mensaje
+        Snackbar.make(requireView(), mensaje, Snackbar.LENGTH_LONG).show()
+    }
 }
-
-
