@@ -5,6 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:indeterminate="true"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="0dp"/>
+
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
@@ -100,21 +112,6 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <EditText
-        android:id="@+id/editTextUsername"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="20dp"
-        android:hint="Usuario"
-        android:textColor="#000"
-        android:textColorHint="#9C27B0"
-        android:inputType="textPersonName"
-        android:maxLines="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCelular"
-        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -128,7 +125,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCelular"
         tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
@@ -147,13 +144,14 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:layout_marginHorizontal="20dp"
-        android:text="Registrar"
+        android:layout_marginTop="24dp"
         android:background="#CD81DA"
+        android:onClick="register"
+        android:text="Crear Cuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextConfirmPassword" />
