@@ -103,7 +103,6 @@ class RegistroActivity : AppCompatActivity() {
         user?.sendEmailVerification()
             ?.addOnCompleteListener(this){
                 task->
-
                 if(task.isComplete){
                     Toast.makeText(this,"Correo de Verificacion Enviado", Toast.LENGTH_LONG).show()
                 }else{
