@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -100,14 +101,14 @@ class SeguimientoFragment : Fragment() {
         val semanaGestacion = semanaGestacionTextView.text.toString()
         val citaMedica = citaMedicaEditText.text.toString()
 
-        // Construir el mensaje para mostrar en el Toast
+        // Construir el mensaje para mostrar en el Snackbar
         val mensaje = "Información guardada:\n" +
                 "Última regla: $ultimaRegla\n" +
                 "FPP: $fpp\n" +
                 "Semana de gestación: $semanaGestacion\n" +
                 "Cita médica: $citaMedica"
 
-        // Mostrar el Toast con el mensaje
-        Toast.makeText(requireContext(), mensaje, Toast.LENGTH_LONG).show()
+        // Mostrar el Snackbar con el mensaje
+        Snackbar.make(requireView(), mensaje, Snackbar.LENGTH_LONG).show()
     }
 }

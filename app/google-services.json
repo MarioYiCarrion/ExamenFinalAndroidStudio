@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "17877260654",
+    "project_id": "appgestacional",
+    "storage_bucket": "appgestacional.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17877260654:android:ca5e7abd17063fcb56897f",
+        "android_client_info": {
+          "package_name": "pe.edu.idat.appgestacional"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtmiaukn6_3g6jlQJpdOHJ7DIAfARSMss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
