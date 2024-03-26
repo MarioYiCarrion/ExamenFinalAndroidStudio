@@ -28,6 +28,7 @@ class OlvidoClaveActivity : AppCompatActivity() {
                 .addOnCompleteListener(this){
                     task ->
                     if(task.isSuccessful){
+                        Toast.makeText(this,"Se envio Correo para Cambio de Clave", Toast.LENGTH_LONG).show()
                         startActivity(Intent(this, LoginActivity::class.java))
                     }else{
                         Toast.makeText(this,"Error al Enviar el Correo", Toast.LENGTH_LONG).show()

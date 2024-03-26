@@ -12,6 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -23,6 +25,7 @@ class SeguimientoFragment : Fragment() {
     private lateinit var semanaGestacionTextView: TextView
     private lateinit var citaMedicaEditText: EditText
     private lateinit var btnRegistrar: Button
+    private lateinit var databaseReference: DatabaseReference
 
     private val ultimaReglaCalendar = Calendar.getInstance()
     private val todayCalendar = Calendar.getInstance()
@@ -46,6 +49,8 @@ class SeguimientoFragment : Fragment() {
         btnRegistrar.setOnClickListener {
             guardarInformacion()
         }
+
+        databaseReference = FirebaseDatabase.getInstance().reference.child("seguimiento")
 
         return view
     }
@@ -101,14 +106,16 @@ class SeguimientoFragment : Fragment() {
         val semanaGestacion = semanaGestacionTextView.text.toString()
         val citaMedica = citaMedicaEditText.text.toString()
 
-        // Construir el mensaje para mostrar en el Snackbar
-        val mensaje = "Información guardada:\n" +
-                "Última regla: $ultimaRegla\n" +
-                "FPP: $fpp\n" +
-                "Semana de gestación: $semanaGestacion\n" +
-                "Cita médica: $citaMedica"
+        val seguimiento = Seguimiento(ultimaRegla, fpp, semanaGestacion, citaMedica)
 
-        // Mostrar el Snackbar con el mensaje
-        Snackbar.make(requireView(), mensaje, Snackbar.LENGTH_LONG).show()
+        val seguimientoKey = databaseReference.push().key
+
+        databaseReference.child(seguimientoKey!!).setValue(seguimiento)
+            .addOnSuccessListener {
+                Snackbar.make(requireView(), "Información guardada en Correctamente", Snackbar.LENGTH_LONG).show()
+            }
+            .addOnFailureListener {
+                Snackbar.make(requireView(), "Error al guardar la información", Snackbar.LENGTH_LONG).show()
+            }
     }
 }
