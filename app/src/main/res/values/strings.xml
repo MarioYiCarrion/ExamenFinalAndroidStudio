@@ -25,4 +25,20 @@
     <string name="btnregistrar">REGISTRAR</string>
     <string name="olvidoclave">Cambiar Contraseña</string>
     <string name="olvidoclavemsj">Ingrese su Correo</string>
+    <string name="recomendaciones">¿Cuantos Meses Tienes?</string>
+    <string name="etuswrnamelogin">Usuario</string>
+    <string name="etpasswordlogin">Password</string>
+    <string name="cbrecordarlogin">¿Recordar Credenciales?</string>
+    <string name="btnlogin">Iniciar Sesion</string>
+    <string-array name="options_array">
+        <item>Mes 1</item>
+        <item>Mes 2</item>
+        <item>Mes 3</item>
+        <item>Mes 4</item>
+        <item>Mes 5</item>
+        <item>Mes 6</item>
+        <item>Mes 7</item>
+        <item>Mes 8</item>
+        <item>Mes 9</item>
+    </string-array>
 </resources>

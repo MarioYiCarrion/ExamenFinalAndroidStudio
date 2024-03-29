@@ -24,6 +24,7 @@
         android:layout_marginTop="8dp"
         android:hint="Seleccionar fecha"
         android:textColor="#000"
+        android:textColorHint="#9C27B0"
         android:focusable="false"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -93,6 +94,7 @@
         android:inputType="textMultiLine"
         android:minLines="4"
         android:textColor="#000"
+        android:textColorHint="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cita_medica_label" />
