@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DatabaseReference
@@ -25,6 +24,7 @@ class SeguimientoFragment : Fragment() {
     private lateinit var semanaGestacionTextView: TextView
     private lateinit var citaMedicaEditText: EditText
     private lateinit var btnRegistrar: Button
+    private lateinit var tvfecha: TextView
     private lateinit var databaseReference: DatabaseReference
 
     private val ultimaReglaCalendar = Calendar.getInstance()
@@ -41,6 +41,15 @@ class SeguimientoFragment : Fragment() {
         semanaGestacionTextView = view.findViewById(R.id.semana_gestacion_text_view)
         citaMedicaEditText = view.findViewById(R.id.cita_medica_edit_text)
         btnRegistrar = view.findViewById(R.id.btnRegistrar)
+        tvfecha = view.findViewById(R.id.tvfecha)
+
+        // Obtener la fecha actual
+        val currentDate = Calendar.getInstance()
+        val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val fechaActual = sdf.format(currentDate.time)
+
+        // Establecer la fecha actual en el EditText
+        tvfecha.setText(fechaActual)
 
         ultimaReglaEditText.setOnClickListener {
             mostrarDatePicker()
@@ -101,12 +110,14 @@ class SeguimientoFragment : Fragment() {
     }
 
     private fun guardarInformacion() {
+        val fechaCita = tvfecha.text.toString()
         val ultimaRegla = ultimaReglaEditText.text.toString()
         val fpp = fppTextView.text.toString()
         val semanaGestacion = semanaGestacionTextView.text.toString()
         val citaMedica = citaMedicaEditText.text.toString()
 
-        val seguimiento = Seguimiento(ultimaRegla, fpp, semanaGestacion, citaMedica)
+
+        val seguimiento = Seguimiento(fechaCita,ultimaRegla , fpp, semanaGestacion, citaMedica)
 
         val seguimientoKey = databaseReference.push().key
 
