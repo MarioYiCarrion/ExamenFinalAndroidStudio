@@ -5,5 +5,6 @@ data class Seguimiento(
     val ultimaRegla: String = "",
     val fpp: String = "",
     val semanaGestacion: String = "",
-    val citaMedica: String = ""
+    val citaMedica: String = "",
+    val userId: String = ""
 )

@@ -11,6 +11,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
@@ -116,17 +117,25 @@ class SeguimientoFragment : Fragment() {
         val semanaGestacion = semanaGestacionTextView.text.toString()
         val citaMedica = citaMedicaEditText.text.toString()
 
+        // Obtener el ID del usuario actualmente autenticado
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
 
-        val seguimiento = Seguimiento(fechaCita,ultimaRegla , fpp, semanaGestacion, citaMedica)
+        if (userId != null) {
+            val seguimiento = Seguimiento(fechaCita, ultimaRegla, fpp, semanaGestacion, citaMedica, userId)
 
-        val seguimientoKey = databaseReference.push().key
+            val seguimientoKey = databaseReference.push().key
 
-        databaseReference.child(seguimientoKey!!).setValue(seguimiento)
-            .addOnSuccessListener {
-                Snackbar.make(requireView(), "Información guardada en Correctamente", Snackbar.LENGTH_LONG).show()
+            if (seguimientoKey != null) {
+                databaseReference.child(seguimientoKey).setValue(seguimiento)
+                    .addOnSuccessListener {
+                        Snackbar.make(requireView(), "Información guardada correctamente", Snackbar.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener {
+                        Snackbar.make(requireView(), "Error al guardar la información", Snackbar.LENGTH_LONG).show()
+                    }
             }
-            .addOnFailureListener {
-                Snackbar.make(requireView(), "Error al guardar la información", Snackbar.LENGTH_LONG).show()
-            }
+        } else {
+            Snackbar.make(requireView(), "Usuario no autenticado", Snackbar.LENGTH_LONG).show()
+        }
     }
 }
