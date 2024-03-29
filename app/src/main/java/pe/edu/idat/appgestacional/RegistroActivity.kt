@@ -6,13 +6,12 @@ import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.core.view.View
 
 class RegistroActivity : AppCompatActivity() {
 
@@ -28,7 +27,6 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,64 +49,76 @@ class RegistroActivity : AppCompatActivity() {
     }
 
     fun register(view: android.view.View) {
-        CrearNuevaCuenta()
-
+        if (validarDatos()) {
+            CrearNuevaCuenta()
+        }
     }
 
-    private fun CrearNuevaCuenta(){
-        val nombre:String=editTextName.text.toString()
-        val DNI:String=editTextDNI.text.toString()
-        val direccion:String=editTextDireccion.text.toString()
-        val email:String=editTextEmail.text.toString()
-        val celular:String=editTextCelular.text.toString()
-        val clave:String=editTextPassword.text.toString()
-        val confirmaClave:String=editTextConfirmPassword.text.toString()
+    private fun validarDatos(): Boolean {
+        val nombre: String = editTextName.text.toString()
+        val DNI: String = editTextDNI.text.toString()
+        val direccion: String = editTextDireccion.text.toString()
+        val email: String = editTextEmail.text.toString()
+        val celular: String = editTextCelular.text.toString()
+        val clave: String = editTextPassword.text.toString()
+        val confirmaClave: String = editTextConfirmPassword.text.toString()
 
-        if(!TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(DNI) && !TextUtils.isEmpty(direccion) &&
-            !TextUtils.isEmpty(email) && !TextUtils.isEmpty(celular) && !TextUtils.isEmpty(clave) &&
-            !TextUtils.isEmpty(confirmaClave)){
-            progressBar.visibility=android.view.View.VISIBLE
-
-            auth.createUserWithEmailAndPassword(email, clave)
-                .addOnCompleteListener(this){
-                    task ->
-
-                    if(task.isComplete){
-                        val user:FirebaseUser?=auth.currentUser
-                        verifyEmail(user)
-
-                        val userBD=dbReference.child(user?.uid.toString())
-
-                        userBD.child("Nombre").setValue(nombre)
-                        userBD.child("DNI").setValue(DNI)
-                        userBD.child("direccion").setValue(direccion)
-                        userBD.child("email").setValue(email)
-                        userBD.child("celular").setValue(celular)
-                        userBD.child("clave").setValue(clave)
-                        action()
-
-
-                    }
-                }
-
+        if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(DNI) || TextUtils.isEmpty(direccion) ||
+            TextUtils.isEmpty(email) || TextUtils.isEmpty(celular) || TextUtils.isEmpty(clave) ||
+            TextUtils.isEmpty(confirmaClave)
+        ) {
+            Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_LONG).show()
+            return false
         }
 
+        return true
     }
 
-    private fun action(){
-        startActivity(Intent(this,LoginActivity::class.java))
-    }
+    private fun CrearNuevaCuenta() {
+        val nombre: String = editTextName.text.toString()
+        val DNI: String = editTextDNI.text.toString()
+        val direccion: String = editTextDireccion.text.toString()
+        val email: String = editTextEmail.text.toString()
+        val celular: String = editTextCelular.text.toString()
+        val clave: String = editTextPassword.text.toString()
+        val confirmaClave: String = editTextConfirmPassword.text.toString()
 
-    private fun verifyEmail(user:FirebaseUser?){
-        user?.sendEmailVerification()
-            ?.addOnCompleteListener(this){
-                task->
-                if(task.isComplete){
-                    Toast.makeText(this,"Correo de Verificacion Enviado", Toast.LENGTH_LONG).show()
-                }else{
-                    Toast.makeText(this,"Error al Enviar Correo de Verificacion", Toast.LENGTH_LONG).show()
+        progressBar.visibility = android.view.View.VISIBLE
+
+        auth.createUserWithEmailAndPassword(email, clave)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user: FirebaseUser? = auth.currentUser
+                    verifyEmail(user)
+                    val userBD = dbReference.child(user?.uid.toString())
+
+                    userBD.child("Nombre").setValue(nombre)
+                    userBD.child("DNI").setValue(DNI)
+                    userBD.child("direccion").setValue(direccion)
+                    userBD.child("email").setValue(email)
+                    userBD.child("celular").setValue(celular)
+                    userBD.child("clave").setValue(clave)
+                    action()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Error al crear la cuenta", Toast.LENGTH_LONG).show()
+                    progressBar.visibility = android.view.View.GONE
                 }
             }
     }
 
+    private fun action() {
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    private fun verifyEmail(user: FirebaseUser?) {
+        user?.sendEmailVerification()
+            ?.addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Correo de Verificación Enviado", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Error al Enviar Correo de Verificación", Toast.LENGTH_LONG).show()
+                }
+            }
+    }
 }

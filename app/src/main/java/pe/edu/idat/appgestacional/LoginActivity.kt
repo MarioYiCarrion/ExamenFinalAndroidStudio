@@ -1,9 +1,7 @@
 package pe.edu.idat.appgestacional
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -11,6 +9,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var buttonRegister: Button
     private lateinit var checkBoxRemember: CheckBox
     private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var auth:FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +35,10 @@ class LoginActivity : AppCompatActivity() {
         auth= FirebaseAuth.getInstance()
 
         // Inicializar SharedPreferences
-        sharedPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
-
-        // Verificar si se deben recordar las credenciales almacenadas
-        val rememberMe = sharedPreferences.getBoolean("rememberMe", false)
-        if (rememberMe) {
-            val savedUsername = sharedPreferences.getString("username", "")
-            val savedPassword = sharedPreferences.getString("password", "")
+        sharedPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE)
+        val savedUsername = sharedPreferences.getString("username", "")
+        val savedPassword = sharedPreferences.getString("password", "")
+        if (!savedUsername.isNullOrEmpty() && !savedPassword.isNullOrEmpty()) {
             editTextUsername.setText(savedUsername)
             editTextPassword.setText(savedPassword)
             checkBoxRemember.isChecked = true
@@ -51,11 +47,12 @@ class LoginActivity : AppCompatActivity() {
 
     fun olvideclave(view:View){
         startActivity(Intent(this, OlvidoClaveActivity::class.java))
-
     }
+
     fun iniciarsesion(view:View){
         loginUsuario()
     }
+
     fun registrar(view:View){
         startActivity(Intent(this, RegistroActivity::class.java))
     }
@@ -66,23 +63,25 @@ class LoginActivity : AppCompatActivity() {
 
         if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)){
             auth.signInWithEmailAndPassword(user, password)
-                .addOnCompleteListener(this){
-                    task->
+                .addOnCompleteListener(this) { task ->
                     if(task.isSuccessful){
+                        if (checkBoxRemember.isChecked) {
+                            // Guardar credenciales en SharedPreferences si el CheckBox está marcado
+                            val editor = sharedPreferences.edit()
+                            editor.putString("username", user)
+                            editor.putString("password", password)
+                            editor.apply()
+                        }
                         action()
+                        finish()
                     }else{
                         Toast.makeText(this, "Error en la autenticacion", Toast.LENGTH_LONG).show()
                     }
                 }
         }
-
     }
 
     private fun action(){
         startActivity(Intent(this, MainActivity::class.java))
     }
-
-
 }
-
-
