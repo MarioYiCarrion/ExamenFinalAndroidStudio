@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:background="@color/purple_200"
+        android:id="@+id/Logout"
+        android:background="@android:color/holo_purple"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/Logout"
         app:showAsAction="never" />
 </menu>

@@ -30,6 +30,7 @@
     <string name="etpasswordlogin">Password</string>
     <string name="cbrecordarlogin">¿Recordar Credenciales?</string>
     <string name="btnlogin">Iniciar Sesion</string>
+    <string name="Logout">Cerrar Sesion</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>
