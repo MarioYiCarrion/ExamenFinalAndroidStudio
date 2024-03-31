@@ -1,4 +1,4 @@
-package pe.edu.idat.appgestacional
+package pe.edu.idat.appgestacional.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
+import pe.edu.idat.appgestacional.R
 
 class ConsejosFragment : Fragment() {
 

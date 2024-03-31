@@ -1,4 +1,4 @@
-package pe.edu.idat.appgestacional
+package pe.edu.idat.appgestacional.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import pe.edu.idat.appgestacional.R
 import pe.edu.idat.appgestacional.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

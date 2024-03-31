@@ -5,6 +5,9 @@
       <entry key="app">
         <State />
       </entry>
+      <entry key="splashActivity">
+        <State />
+      </entry>
     </value>
   </component>
 </project>

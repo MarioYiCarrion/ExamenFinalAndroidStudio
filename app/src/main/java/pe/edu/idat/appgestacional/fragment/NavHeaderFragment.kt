@@ -1,4 +1,4 @@
-    package pe.edu.idat.appgestacional
+    package pe.edu.idat.appgestacional.fragment
 
     import android.os.Bundle
     import android.view.LayoutInflater
@@ -8,6 +8,7 @@
     import androidx.fragment.app.Fragment
     import com.google.firebase.auth.FirebaseAuth
     import com.google.firebase.auth.FirebaseUser
+    import pe.edu.idat.appgestacional.R
 
     class NavHeaderFragment : Fragment() {
 
