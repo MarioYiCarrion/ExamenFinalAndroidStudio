@@ -32,6 +32,7 @@
     <string name="btnlogin">Iniciar Sesion</string>
     <string name="Logout">Cerrar Sesion</string>
     <string name="pfrBienvenido">Bienvenido(a):</string>
+    <string name="valolvideclave">Olvide Contraseña</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>
