@@ -1,4 +1,4 @@
-package pe.edu.idat.appgestacional
+package pe.edu.idat.appgestacional.ui
 
 
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import pe.edu.idat.appgestacional.R
 
 class OlvidoClaveActivity : AppCompatActivity() {
 

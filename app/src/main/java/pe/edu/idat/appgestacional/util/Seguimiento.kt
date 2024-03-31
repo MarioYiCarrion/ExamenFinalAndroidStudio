@@ -1,4 +1,4 @@
-package pe.edu.idat.appgestacional
+package pe.edu.idat.appgestacional.util
 
 data class Seguimiento(
     val fechaCita:   String ="",

@@ -6,31 +6,34 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/arteembarazo"
+        android:icon="@drawable/elembarazo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/arteembarazo"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGestacional"
         tools:targetApi="31">
         <activity
-            android:name=".OlvidoClaveActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegistroActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".ui.splashActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".ui.OlvidoClaveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RegistroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false">
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
+            android:name=".ui.MainActivity"
+            android:exported="false"
             android:theme="@style/Theme.AppGestacional.NoActionBar" />
     </application>
 
