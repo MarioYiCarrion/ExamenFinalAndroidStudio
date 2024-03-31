@@ -7,15 +7,15 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import pe.edu.idat.appgestacional.R
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var editTextUsername: EditText
-    private lateinit var editTextPassword: EditText
+    private lateinit var editTextUsername: TextInputEditText
+    private lateinit var editTextPassword: TextInputEditText
     private lateinit var buttonLogin: Button
     private lateinit var buttonRegister: Button
     private lateinit var checkBoxRemember: CheckBox
@@ -59,23 +59,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUsuario(){
-        val user: String=editTextUsername.text.toString()
-        val password: String=editTextPassword.text.toString()
+        val user: String = editTextUsername.text.toString()
+        val password: String = editTextPassword.text.toString()
 
-        if(!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)){
+        if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)) {
             auth.signInWithEmailAndPassword(user, password)
                 .addOnCompleteListener(this) { task ->
-                    if(task.isSuccessful){
+                    if (task.isSuccessful) {
                         if (checkBoxRemember.isChecked) {
                             // Guardar credenciales en SharedPreferences si el CheckBox está marcado
                             val editor = sharedPreferences.edit()
                             editor.putString("username", user)
                             editor.putString("password", password)
                             editor.apply()
+                        } else {
+                            // Limpiar credenciales de SharedPreferences si el CheckBox no está marcado
+                            val editor = sharedPreferences.edit()
+                            editor.remove("username")
+                            editor.remove("password")
+                            editor.apply()
                         }
                         action()
                         finish()
-                    }else{
+                    } else {
                         Toast.makeText(this, "Error en la autenticacion", Toast.LENGTH_LONG).show()
                     }
                 }
