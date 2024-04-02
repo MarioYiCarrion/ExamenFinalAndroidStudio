@@ -92,7 +92,8 @@
         android:text="@string/valolvideclave"
         android:textAllCaps="false"
         android:textColor="#0529EF"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <!-- Botón de iniciar sesión -->
     <Button
