@@ -33,6 +33,17 @@
     <string name="Logout">Cerrar Sesion</string>
     <string name="pfrBienvenido">Bienvenido(a):</string>
     <string name="valolvideclave">Olvide Contraseña</string>
+    <string name="valPresionArterial">Presion Arterial:</string>
+    <string name="valPresionArteria">SYS/DIA</string>
+    <string name="valmedidapresion">mmHg</string>
+    <string name="valpeso">Peso(kg):</string>
+    <string name="valaltura">Altura(m):</string>
+    <string name="valimc">IMC:</string>
+    <string name="valfecha">FECHA:</string>
+    <string name="valdiariosint">Registra tus sintomas:</string>
+    <string name="valregistrasintomas">Escribe tus sintomas...</string>
+    <string name="valdiarioguardar">GUARDAR</string>
+    <string name="valdiarioAlertas">Señales de Peligro en el embarazo:</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>
