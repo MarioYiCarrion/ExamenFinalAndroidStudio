@@ -44,6 +44,10 @@
     <string name="valregistrasintomas">Escribe tus sintomas...</string>
     <string name="valdiarioguardar">GUARDAR</string>
     <string name="valdiarioAlertas">Señales de Peligro en el embarazo:</string>
+    <string name="valkg">Kg</string>
+    <string name="valtemp">C°</string>
+    <string name="valaltuterina">cm.</string>
+    <string name="valfcf">Frecuencia Cardiaca x Minuto</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>
@@ -54,5 +58,24 @@
         <item>Mes 7</item>
         <item>Mes 8</item>
         <item>Mes 9</item>
+    </string-array>
+    <string-array name="movimiento_fetal">
+        <item>NA</item>
+        <item>+</item>
+        <item>++</item>
+        <item>+++</item>
+        <item>SM</item>
+    </string-array>
+    <string-array name="edema_array">
+        <item>SE</item>
+        <item>+</item>
+        <item>++</item>
+        <item>+++</item>
+    </string-array>
+    <string-array name="centros_array">
+        <item>C.I. Lima Centro</item>
+        <item>C.I. San Borja</item>
+        <item>C.I. San Isidro</item>
+        <item>C.I. Surco</item>
     </string-array>
 </resources>

@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -29,10 +28,7 @@ class SeguimientoFragment : Fragment() {
     private lateinit var citaMedicaEditText: EditText
     private lateinit var btnRegistrar: Button
     private lateinit var tvfecha: TextView
-    private lateinit var etpresion: EditText
-    private lateinit var etpeso: EditText
-    private lateinit var etaltura: EditText
-    private lateinit var tvIMC: TextView
+
 
     private lateinit var databaseReference: DatabaseReference
 
@@ -51,10 +47,6 @@ class SeguimientoFragment : Fragment() {
         citaMedicaEditText = view.findViewById(R.id.cita_medica_edit_text)
         btnRegistrar = view.findViewById(R.id.btnRegistrar)
         tvfecha = view.findViewById(R.id.tvfecha)
-        etpresion = view.findViewById(R.id.etpresion)
-        etpeso = view.findViewById(R.id.etpeso)
-        etaltura = view.findViewById(R.id.etaltura)
-        tvIMC = view.findViewById(R.id.tvIMC)
 
         // Obtener la fecha actual
         val currentDate = Calendar.getInstance()
@@ -68,14 +60,6 @@ class SeguimientoFragment : Fragment() {
             mostrarDatePicker()
         }
 
-        // Agregar listener para calcular el IMC cuando se cambie el peso o la altura
-        etpeso.addTextChangedListener {
-            calcularIMC()
-        }
-
-        etaltura.addTextChangedListener {
-            calcularIMC()
-        }
 
         btnRegistrar.setOnClickListener {
             guardarInformacion()
@@ -131,41 +115,20 @@ class SeguimientoFragment : Fragment() {
         semanaGestacionTextView.text = "Tienes $diffWeeks Semanas de Gestacion"
     }
 
-    private fun calcularIMC() {
-        val pesoStr = etpeso.text.toString()
-        val alturaStr = etaltura.text.toString()
 
-        if (pesoStr.isNotEmpty() && alturaStr.isNotEmpty()) {
-            val peso = pesoStr.toDouble()
-            val altura = alturaStr.toDouble()
-
-            // Calcula el IMC
-            val imc = peso / (altura * altura)
-
-            // Muestra el IMC en el TextView correspondiente
-            tvIMC.text = String.format(Locale.getDefault(), "%.2f", imc)
-        } else {
-            // Si falta peso o altura, muestra un mensaje vacío en el TextView del IMC
-            tvIMC.text = ""
-        }
-    }
 
     private fun guardarInformacion() {
         val fechaCita = tvfecha.text.toString()
         val ultimaRegla = ultimaReglaEditText.text.toString()
         val fpp = fppTextView.text.toString()
         val semanaGestacion = semanaGestacionTextView.text.toString()
-        val presionArterial = etpresion.text.toString()
-        val pesoStr = etpeso.text.toString()
-        val alturaStr = etaltura.text.toString()
-        val IMC = tvIMC.text.toString()
         val citaMedica = citaMedicaEditText.text.toString()
 
         // Obtener el ID del usuario actualmente autenticado
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         if (userId != null) {
-            val seguimiento = Seguimiento(fechaCita, ultimaRegla, fpp, semanaGestacion,presionArterial, pesoStr, alturaStr, IMC, citaMedica, userId)
+            val seguimiento = Seguimiento(fechaCita, ultimaRegla, fpp, semanaGestacion, citaMedica, userId)
 
             val seguimientoKey = databaseReference.push().key
 
