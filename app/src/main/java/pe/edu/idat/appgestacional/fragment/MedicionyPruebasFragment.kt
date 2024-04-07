@@ -1,6 +1,8 @@
 package pe.edu.idat.appgestacional.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +21,6 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
 class MedicionyPruebasFragment : Fragment() {
 
     private lateinit var tvfechamedicion: TextView
@@ -37,7 +38,6 @@ class MedicionyPruebasFragment : Fragment() {
     private lateinit var btnguardarmed: Button
 
     private lateinit var databaseReference: DatabaseReference
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,22 +60,49 @@ class MedicionyPruebasFragment : Fragment() {
         spcatencion = view.findViewById(R.id.spcatencion)
         btnguardarmed = view.findViewById(R.id.btnguardarmed)
 
-
         val currentDate = Calendar.getInstance()
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val fechahoy = sdf.format(currentDate.time)
 
-        tvfechamedicion.setText(fechahoy)
+        tvfechamedicion.text = fechahoy
 
-        btnguardarmed.setOnClickListener{
+        // Agregar TextWatcher para el cálculo automático del IMC
+        etAlturamed.addTextChangedListener(imcWatcher)
+        etpesomed.addTextChangedListener(imcWatcher)
+
+        btnguardarmed.setOnClickListener {
             guardarMedicion()
         }
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("medicionesPruebas")
 
         return view
-
     }
+
+    // TextWatcher para calcular el IMC automáticamente
+    private val imcWatcher = object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            calcularIMC()
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+    }
+
+    private fun calcularIMC() {
+        val peso = etpesomed.text.toString().toDoubleOrNull()
+        val altura = etAlturamed.text.toString().toDoubleOrNull()
+
+        if (peso != null && altura != null && altura != 0.0) {
+            val imc = peso / (altura * altura)
+            val imcFormateado = String.format("%.2f", imc)
+            etIMC.setText(imcFormateado)
+        } else {
+            etIMC.setText("")
+        }
+    }
+
 
     private fun guardarMedicion() {
         val fecharesgistro = tvfechamedicion.text.toString()
