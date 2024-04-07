@@ -105,7 +105,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="16dp"
         android:hint="Numero de Celular"
-        android:inputType="textEmailAddress"
+        android:inputType="number"
         android:maxLength="9"
         android:textColor="#000"
         android:textColorHint="#9C27B0"
