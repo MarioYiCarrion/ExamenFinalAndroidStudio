@@ -8,29 +8,42 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/elembarazo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/elembarazo"
+
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGestacional"
         tools:targetApi="31">
         <activity
-            android:name=".RegistroActivity"
+            android:name=".ui.splashActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.OlvidoClaveActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name=".ui.RegistroActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false">
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppGestacional.NoActionBar">
 
         </activity>
+=======
+            android:name=".ui.MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppGestacional.NoActionBar" />
+>>>>>>> Master
     </application>
 
 </manifest>

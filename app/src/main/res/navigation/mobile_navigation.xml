@@ -6,37 +6,37 @@
     app:startDestination="@id/principalFragment">
     <fragment
         android:id="@+id/principalFragment"
-        android:name="pe.edu.idat.appgestacional.PrincipalFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.PrincipalFragment"
         android:label="@string/menu_principal"
         tools:layout="@layout/fragment_principal" />
     <fragment
         android:id="@+id/seguimientoFragment"
-        android:name="pe.edu.idat.appgestacional.SeguimientoFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.SeguimientoFragment"
         android:label="@string/menu_seguimiento"
         tools:layout="@layout/fragment_seguimiento" />
     <fragment
         android:id="@+id/citasFragment"
-        android:name="pe.edu.idat.appgestacional.CitasFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.CitasFragment"
         android:label="@string/menu_citas"
         tools:layout="@layout/fragment_citas" />
     <fragment
         android:id="@+id/medicionyPruebasFragment"
-        android:name="pe.edu.idat.appgestacional.MedicionyPruebasFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.MedicionyPruebasFragment"
         android:label="@string/menu_mediciones"
         tools:layout="@layout/fragment_mediciony_pruebas" />
     <fragment
         android:id="@+id/diarioFragment"
-        android:name="pe.edu.idat.appgestacional.DiarioFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.DiarioFragment"
         android:label="@string/menu_diario"
         tools:layout="@layout/fragment_diario" />
     <fragment
         android:id="@+id/consejosFragment"
-        android:name="pe.edu.idat.appgestacional.ConsejosFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.ConsejosFragment"
         android:label="@string/menu_consejos"
         tools:layout="@layout/fragment_consejos" />
     <fragment
         android:id="@+id/recordatoriosyAlertasFragment"
-        android:name="pe.edu.idat.appgestacional.RecordatoriosyAlertasFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.RecordatoriosyAlertasFragment"
         android:label="@string/menu_recordatorios"
         tools:layout="@layout/fragment_recordatoriosy_alertas" />
 </navigation>
