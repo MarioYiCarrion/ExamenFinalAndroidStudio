@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import pe.edu.idat.appgestacional.R
-import pe.edu.idat.appgestacional.util.mediciones
+import pe.edu.idat.appgestacional.util.bdclases.mediciones
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale

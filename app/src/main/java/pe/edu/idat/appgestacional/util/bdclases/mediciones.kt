@@ -1,4 +1,4 @@
-package pe.edu.idat.appgestacional.util
+package pe.edu.idat.appgestacional.util.bdclases
 
 data class mediciones(
     val fecharesgistro: String = "",

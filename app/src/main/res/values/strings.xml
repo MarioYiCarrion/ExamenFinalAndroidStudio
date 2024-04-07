@@ -48,6 +48,7 @@
     <string name="valtemp">C°</string>
     <string name="valaltuterina">cm.</string>
     <string name="valfcf">Frecuencia Cardiaca x Minuto</string>
+    <string name="valcitaspro">Citas Programadas</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>
