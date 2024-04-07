@@ -29,21 +29,13 @@
             android:exported="false" />
         <activity
             android:name=".ui.LoginActivity"
-            android:exported="false">
+            android:exported="true">
         </activity>
         <activity
-<<<<<<< HEAD
-            android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppGestacional.NoActionBar">
-
-        </activity>
-=======
             android:name=".ui.MainActivity"
             android:exported="false"
+            android:label="@string/app_name"
             android:theme="@style/Theme.AppGestacional.NoActionBar" />
->>>>>>> Master
     </application>
 
 </manifest>
