@@ -1,6 +1,6 @@
-package pe.edu.idat.appgestacional.util
+package pe.edu.idat.appgestacional.util.bdclases
 
-class Diario (
+data class Diario (
     val fechaRegistro: String="",
     val sintomas: String="",
     val userId: String=""
