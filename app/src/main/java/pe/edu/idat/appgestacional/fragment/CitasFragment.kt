@@ -56,7 +56,7 @@ class CitasFragment : Fragment() {
         lista.add(citas("07/11/2024","Esthefania Quevedo Delgado","Ginecologia",
             "Dra. Ramirez","C.I. San Borja"))
         lista.add(citas("07/12/2024","Esthefania Quevedo Delgado","Ginecologia",
-            "Dra. Ramirez","C.I. San Borja"))
+            "Dra. Ramirez","C.I. San Borja ee"))
         return lista
     }
 
