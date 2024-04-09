@@ -5,17 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import pe.edu.idat.appgestacional.R
+import pe.edu.idat.appgestacional.retrofit.interfaces.ApiService
 import pe.edu.idat.appgestacional.util.bdclases.Seguimiento
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -28,6 +36,7 @@ class SeguimientoFragment : Fragment() {
     private lateinit var citaMedicaEditText: EditText
     private lateinit var btnRegistrar: Button
     private lateinit var tvfecha: TextView
+    private lateinit var spmedico: Spinner
 
 
     private lateinit var databaseReference: DatabaseReference
@@ -47,6 +56,32 @@ class SeguimientoFragment : Fragment() {
         citaMedicaEditText = view.findViewById(R.id.cita_medica_edit_text)
         btnRegistrar = view.findViewById(R.id.btnRegistrar)
         tvfecha = view.findViewById(R.id.tvfecha)
+        spmedico = view.findViewById(R.id.spmedico)
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://nodejs-mysql-restapi-test-production-895d.up.railway.app/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val apiService = retrofit.create(ApiService::class.java)
+
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val response = apiService.obtenerMedicos()
+                val nombresMedicos = response.resultados.map { it.nombre }
+
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    nombresMedicos
+                )
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spmedico.adapter = adapter
+            } catch (e: Exception) {
+                e.printStackTrace()
+                // Manejar errores
+            }
+        }
 
         // Obtener la fecha actual
         val currentDate = Calendar.getInstance()
@@ -54,12 +89,11 @@ class SeguimientoFragment : Fragment() {
         val fechaActual = sdf.format(currentDate.time)
 
         // Establecer la fecha actual en el EditText
-        tvfecha.setText(fechaActual)
+        tvfecha.text = fechaActual
 
         ultimaReglaEditText.setOnClickListener {
             mostrarDatePicker()
         }
-
 
         btnRegistrar.setOnClickListener {
             guardarInformacion()
@@ -115,20 +149,19 @@ class SeguimientoFragment : Fragment() {
         semanaGestacionTextView.text = "Tienes $diffWeeks Semanas de Gestacion"
     }
 
-
-
     private fun guardarInformacion() {
         val fechaCita = tvfecha.text.toString()
         val ultimaRegla = ultimaReglaEditText.text.toString()
         val fpp = fppTextView.text.toString()
         val semanaGestacion = semanaGestacionTextView.text.toString()
         val citaMedica = citaMedicaEditText.text.toString()
+        val medicoSeleccionado = spmedico.selectedItem.toString()
 
         // Obtener el ID del usuario actualmente autenticado
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         if (userId != null) {
-            val seguimiento = Seguimiento(fechaCita, ultimaRegla, fpp, semanaGestacion, citaMedica, userId)
+            val seguimiento = Seguimiento(fechaCita, ultimaRegla, fpp, semanaGestacion, citaMedica, medicoSeleccionado, userId)
 
             val seguimientoKey = databaseReference.push().key
 
