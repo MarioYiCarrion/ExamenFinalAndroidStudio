@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.splashActivity">
 
-    <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@color/common_google_signin_btn_text_dark_default" />
 
     <ImageView
         android:id="@+id/ivsplash"
