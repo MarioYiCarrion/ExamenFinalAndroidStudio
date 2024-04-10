@@ -83,6 +83,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
+        android:drawableStart="@drawable/baseline_password_24"
         android:gravity="start"
         android:onClick="olvideclave"
         android:padding="10dp"
