@@ -3,8 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/Logout"
-        android:background="@android:color/holo_purple"
+        android:checkable="false"
+        android:enabled="true"
+        android:icon="@android:drawable/ic_lock_power_off"
         android:orderInCategory="100"
         android:title="@string/Logout"
+        android:visible="true"
         app:showAsAction="never" />
 </menu>
