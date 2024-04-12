@@ -11,6 +11,7 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -19,11 +20,15 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import pe.edu.idat.appgestacional.R
 import pe.edu.idat.appgestacional.retrofit.interfaces.ApiService
 import pe.edu.idat.appgestacional.util.bdclases.Seguimiento
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.OutputStreamWriter
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -97,6 +102,7 @@ class SeguimientoFragment : Fragment() {
 
         btnRegistrar.setOnClickListener {
             guardarInformacion()
+            registrarInformacion()
         }
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("seguimiento")
@@ -178,4 +184,69 @@ class SeguimientoFragment : Fragment() {
             Snackbar.make(requireView(), "Usuario no autenticado", Snackbar.LENGTH_LONG).show()
         }
     }
+
+    private fun registrarInformacion() {
+        val fechaCita = tvfecha.text.toString()
+        val ultimaRegla = ultimaReglaEditText.text.toString()
+        val fpp = fppTextView.text.toString()
+        val semanaGestacion = semanaGestacionTextView.text.toString()
+        val citaMedica = citaMedicaEditText.text.toString()
+        val medicoSeleccionado = "marioyicarrion@gmail.com"
+        val id = ""
+
+        // Verificar que los campos no estén vacíos
+        if (fechaCita.isNotBlank() && ultimaRegla.isNotBlank() && fpp.isNotBlank() &&
+            semanaGestacion.isNotBlank() && citaMedica.isNotBlank() && medicoSeleccionado.isNotBlank()) {
+
+            val seguimiento = JSONObject().apply {
+                put("id", id)
+                put("fechaCita", fechaCita)
+                put("ultimaRegla", ultimaRegla)
+                put("fpp", fpp)
+                put("semanaGestacion", semanaGestacion)
+                put("citaMedica", citaMedica)
+                put("userId", medicoSeleccionado)
+            }
+
+
+            GlobalScope.launch(Dispatchers.IO) {
+                val url = URL("https://nodejs-mysql-restapi-test-production-895d.up.railway.app/api/seguimientos")
+                val conexion = url.openConnection() as HttpURLConnection
+
+                try {
+                    conexion.requestMethod = "POST"
+                    conexion.setRequestProperty("Content-Type", "application/json")
+                    conexion.setRequestProperty("Accept", "application/json")
+                    conexion.doOutput = true
+
+                    val outputStream = OutputStreamWriter(conexion.outputStream)
+                    outputStream.write(seguimiento.toString())
+                    outputStream.flush()
+
+                    val responseCode = conexion.responseCode
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        requireActivity().runOnUiThread {
+                            Toast.makeText(requireContext(), "Usuario registrado exitosamente", Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        requireActivity().runOnUiThread {
+                            Toast.makeText(requireContext(), "Error al registrar usuario: $responseCode", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(requireContext(), "Error al registrar usuario: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
+                } finally {
+                    conexion.disconnect()
+                }
+            }
+        } else {
+            // Mostrar mensaje si algún campo está vacío
+            Toast.makeText(requireContext(), "Por favor completa todos los campos", Toast.LENGTH_LONG).show()
+        }
+    }
+
+
 }
