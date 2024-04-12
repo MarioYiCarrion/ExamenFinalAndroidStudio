@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fondo2"
     android:padding="16dp" >
 
     <androidx.recyclerview.widget.RecyclerView
@@ -22,8 +23,8 @@
         android:layout_height="wrap_content"
         android:text="@string/valcitaspro"
         android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="16sp"
+        android:textColor="#D37676"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
