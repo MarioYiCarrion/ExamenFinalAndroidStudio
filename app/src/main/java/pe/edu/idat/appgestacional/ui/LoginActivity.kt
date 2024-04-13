@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import pe.edu.idat.appgestacional.R
 
 class LoginActivity : AppCompatActivity() {
@@ -58,35 +59,53 @@ class LoginActivity : AppCompatActivity() {
         startActivity(Intent(this, RegistroActivity::class.java))
     }
 
-    private fun loginUsuario(){
+    private fun loginUsuario() {
         val user: String = editTextUsername.text.toString()
         val password: String = editTextPassword.text.toString()
 
-        if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)) {
-            auth.signInWithEmailAndPassword(user, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        if (checkBoxRemember.isChecked) {
-                            // Guardar credenciales en SharedPreferences si el CheckBox está marcado
-                            val editor = sharedPreferences.edit()
-                            editor.putString("username", user)
-                            editor.putString("password", password)
-                            editor.apply()
-                        } else {
-                            // Limpiar credenciales de SharedPreferences si el CheckBox no está marcado
-                            val editor = sharedPreferences.edit()
-                            editor.remove("username")
-                            editor.remove("password")
-                            editor.apply()
-                        }
-                        action()
-                        finish()
+        if (user.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Por favor, ingresa tu usuario y contraseña", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        auth.signInWithEmailAndPassword(user, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    if (checkBoxRemember.isChecked) {
+                        // Almacenar un indicador de "sesión iniciada" en lugar de credenciales
+                        sharedPreferences.edit().putBoolean("isLoggedIn", true).apply()
                     } else {
-                        Toast.makeText(this, "Error en la autenticacion", Toast.LENGTH_LONG).show()
+                        sharedPreferences.edit().remove("isLoggedIn").apply()
+                    }
+                    action()
+                    finish()
+                } else {
+                    // Mostrar mensaje de error detallado
+                    val exception = task.exception
+                    if (exception != null) {
+                        if (exception is FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(this, "Credenciales inválidas. Por favor, verifica tu usuario y contraseña", Toast.LENGTH_LONG).show()
+                        } else {
+                            Toast.makeText(this, "Error en la autenticación: ${exception.message}", Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Error en la autenticación.", Toast.LENGTH_LONG).show()
                     }
                 }
+            }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Verificar si ya hay una sesión iniciada
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        if (isLoggedIn) {
+            action()
+            finish()
         }
     }
+
+
 
     private fun action(){
         startActivity(Intent(this, MainActivity::class.java))
