@@ -10,13 +10,21 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.json.JSONObject
 import pe.edu.idat.appgestacional.R
 import pe.edu.idat.appgestacional.util.bdclases.mediciones
+import java.io.OutputStreamWriter
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -36,7 +44,7 @@ class MedicionyPruebasFragment : Fragment() {
     private lateinit var spedema: Spinner
     private lateinit var spcatencion: Spinner
     private lateinit var btnguardarmed: Button
-
+    private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
 
     override fun onCreateView(
@@ -60,6 +68,8 @@ class MedicionyPruebasFragment : Fragment() {
         spcatencion = view.findViewById(R.id.spcatencion)
         btnguardarmed = view.findViewById(R.id.btnguardarmed)
 
+
+
         val currentDate = Calendar.getInstance()
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val fechahoy = sdf.format(currentDate.time)
@@ -72,6 +82,7 @@ class MedicionyPruebasFragment : Fragment() {
 
         btnguardarmed.setOnClickListener {
             guardarMedicion()
+            registrarMediciones()
         }
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("medicionesPruebas")
@@ -140,5 +151,92 @@ class MedicionyPruebasFragment : Fragment() {
             Snackbar.make(requireView(), "Usuario no autenticado", Snackbar.LENGTH_LONG).show()
         }
 
+    }
+
+    private fun registrarMediciones() {
+        val fecharesgistro = tvfechamedicion.text.toString()
+        val mesEmbarazo = spmesmedicion.selectedItem.toString()
+        val temperatura = ettemperaturamed.text.toString()
+        val peso = etpesomed.text.toString()
+        val altura = etAlturamed.text.toString()
+        val IMC = etIMC.text.toString()
+        val presionArterial = etpresionmed.text.toString()
+        val AlturaUterina = etalturauterina.text.toString()
+        val FrecCardiaca = etfrecuenciacard.text.toString()
+        val MovFetal = spmovfetal.selectedItem.toString()
+        val edema = spedema.selectedItem.toString()
+        val centroAtencion = spcatencion.selectedItem.toString()
+        var userId = ""
+
+        auth = FirebaseAuth.getInstance()
+        databaseReference = FirebaseDatabase.getInstance().reference.child("User")
+
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val email = currentUser.email
+            userId = email ?: ""
+        }
+
+        // Verificar que los campos no estén vacíos
+        if (fecharesgistro.isNotBlank() && mesEmbarazo.isNotBlank() && temperatura.isNotBlank() &&
+            peso.isNotBlank() && altura.isNotBlank() && IMC.isNotBlank() && presionArterial.isNotBlank()
+            && AlturaUterina.isNotBlank() && FrecCardiaca.isNotBlank() && MovFetal.isNotBlank()
+            && edema.isNotBlank() && centroAtencion.isNotBlank()) {
+
+            val seguimiento = JSONObject().apply {
+                put("id", id)
+                put("fecharesgistro", fecharesgistro)
+                put("mesEmbarazo", mesEmbarazo)
+                put("temperatura", temperatura)
+                put("peso", peso)
+                put("altura", altura)
+                put("IMC", IMC)
+                put("presionArterial", presionArterial)
+                put("AlturaUterina", AlturaUterina)
+                put("FrecCardiaca", FrecCardiaca)
+                put("MovFetal", MovFetal)
+                put("edema", edema)
+                put("centroAtencion", centroAtencion)
+                put("userId", userId)
+            }
+
+
+            GlobalScope.launch(Dispatchers.IO) {
+                val url = URL("https://nodejs-mysql-restapi-test-production-895d.up.railway.app/api/mediciones")
+                val conexion = url.openConnection() as HttpURLConnection
+
+                try {
+                    conexion.requestMethod = "POST"
+                    conexion.setRequestProperty("Content-Type", "application/json")
+                    conexion.setRequestProperty("Accept", "application/json")
+                    conexion.doOutput = true
+
+                    val outputStream = OutputStreamWriter(conexion.outputStream)
+                    outputStream.write(seguimiento.toString())
+                    outputStream.flush()
+
+                    val responseCode = conexion.responseCode
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        requireActivity().runOnUiThread {
+                            Toast.makeText(requireContext(), "Mediciones Guardadas Correctamente", Toast.LENGTH_LONG).show()
+                        }
+                    } else {
+                        requireActivity().runOnUiThread {
+                            Toast.makeText(requireContext(), "Error al Guardar las Mediciones: $responseCode", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(requireContext(), "Error al registrar las Mediciones: ${e.message}", Toast.LENGTH_LONG).show()
+                    }
+                } finally {
+                    conexion.disconnect()
+                }
+            }
+        } else {
+            // Mostrar mensaje si algún campo está vacío
+            Toast.makeText(requireContext(), "Por favor completa todos los campos", Toast.LENGTH_LONG).show()
+        }
     }
 }

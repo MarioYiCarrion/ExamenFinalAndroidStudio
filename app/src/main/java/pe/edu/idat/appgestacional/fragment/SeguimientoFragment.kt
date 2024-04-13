@@ -241,17 +241,17 @@ class SeguimientoFragment : Fragment() {
                     val responseCode = conexion.responseCode
                     if (responseCode == HttpURLConnection.HTTP_OK) {
                         requireActivity().runOnUiThread {
-                            Toast.makeText(requireContext(), "Usuario registrado exitosamente", Toast.LENGTH_LONG).show()
+                            Toast.makeText(requireContext(), "Informacion Guardada Correctamente", Toast.LENGTH_LONG).show()
                         }
                     } else {
                         requireActivity().runOnUiThread {
-                            Toast.makeText(requireContext(), "Error al registrar usuario: $responseCode", Toast.LENGTH_LONG).show()
+                            Toast.makeText(requireContext(), "Error al Guardar Informacion: $responseCode", Toast.LENGTH_LONG).show()
                         }
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
                     requireActivity().runOnUiThread {
-                        Toast.makeText(requireContext(), "Error al registrar usuario: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(requireContext(), "Error al registrar Informacion: ${e.message}", Toast.LENGTH_LONG).show()
                     }
                 } finally {
                     conexion.disconnect()

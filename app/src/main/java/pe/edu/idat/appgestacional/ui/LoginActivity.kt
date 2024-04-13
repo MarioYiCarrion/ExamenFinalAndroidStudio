@@ -63,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
         val user: String = editTextUsername.text.toString()
         val password: String = editTextPassword.text.toString()
 
+<<<<<<< HEAD
         if (user.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Por favor, ingresa tu usuario y contraseña", Toast.LENGTH_SHORT).show()
             return
@@ -90,6 +91,30 @@ class LoginActivity : AppCompatActivity() {
                         }
                     } else {
                         Toast.makeText(this, "Error en la autenticación.", Toast.LENGTH_LONG).show()
+=======
+        if (!TextUtils.isEmpty(user) && !TextUtils.isEmpty(password)) {
+            auth.signInWithEmailAndPassword(user, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        if (checkBoxRemember.isChecked) {
+                            // Guardar credenciales en SharedPreferences si el CheckBox está marcado
+                            val editor = sharedPreferences.edit()
+                            editor.putString("username", user)
+                            editor.putString("password", password)
+                            editor.apply()
+                        } else {
+                            // Limpiar credenciales de SharedPreferences si el CheckBox no está marcado
+                            val editor = sharedPreferences.edit()
+                            editor.remove("username")
+                            editor.remove("password")
+                            editor.apply()
+
+                        }
+                        action()
+                        finish()
+                    } else {                        
+                        Toast.makeText(this, "Error en la autenticacion", Toast.LENGTH_LONG).show()
+>>>>>>> 728e3afc3ac39293991008a2d2e24dfa1021f83f
                     }
                 }
             }
