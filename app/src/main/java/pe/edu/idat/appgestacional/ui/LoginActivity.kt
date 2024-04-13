@@ -82,8 +82,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                         action()
                         finish()
-                    } else {
-                        //action()
+                    } else {                        
                         Toast.makeText(this, "Error en la autenticacion", Toast.LENGTH_LONG).show()
                     }
                 }

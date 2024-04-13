@@ -1,7 +1,10 @@
 package pe.edu.idat.appgestacional.retrofit.interfaces
 
 
+
 import pe.edu.idat.appgestacional.retrofit.response.CitaResponse
+
+
 
 import pe.edu.idat.appgestacional.retrofit.response.MedicoResponse
 import retrofit2.Call
@@ -11,7 +14,6 @@ interface ApiService {
 
     @GET("medicos")
     suspend fun obtenerMedicos(): MedicoResponse
-
 
 
 
