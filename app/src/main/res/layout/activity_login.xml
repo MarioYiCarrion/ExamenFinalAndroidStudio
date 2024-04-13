@@ -11,6 +11,27 @@
 
 
     <!-- Campo de entrada de usuario -->
+
+    <!-- Campo de entrada de contraseña -->
+
+    <!-- CheckBox para Recordar -->
+
+    <!-- Botón de iniciar sesión -->
+
+    <!-- Botón de registro -->
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="420dp"
+        android:layout_height="344dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginEnd="-30dp"
+        app:srcCompat="@drawable/logogin" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutUsername"
         android:layout_width="match_parent"
@@ -35,7 +56,6 @@
             tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Campo de entrada de contraseña -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutPassword"
         android:layout_width="match_parent"
@@ -61,14 +81,13 @@
             tools:ignore="TouchTargetSizeCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- CheckBox para Recordar -->
     <CheckBox
         android:id="@+id/cbrecorda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/textInputLayoutPassword"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
         android:text="Recordar"
         android:textColor="#000"
         tools:ignore="TouchTargetSizeCheck" />
@@ -93,7 +112,6 @@
         android:textStyle="bold"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <!-- Botón de iniciar sesión -->
     <Button
         android:id="@+id/buttonLogin"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -101,13 +119,12 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/olvideclave"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="19dp"
         android:backgroundTint="#3F51B5"
         android:onClick="iniciarsesion"
         android:text="Iniciar sesión"
         android:textColor="#FFFEFE" />
 
-    <!-- Botón de registro -->
     <Button
         android:id="@+id/buttonRegister"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -120,15 +137,5 @@
         android:onClick="registrar"
         android:text="Registrarse"
         android:textColor="#FFFDFD" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="293dp"
-        android:layout_height="249dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="3dp"
-        app:srcCompat="@drawable/logogin" />
 
 </RelativeLayout>
