@@ -78,10 +78,11 @@ class LoginActivity : AppCompatActivity() {
                             editor.remove("username")
                             editor.remove("password")
                             editor.apply()
+
                         }
                         action()
                         finish()
-                    } else {
+                    } else {                        
                         Toast.makeText(this, "Error en la autenticacion", Toast.LENGTH_LONG).show()
                     }
                 }
