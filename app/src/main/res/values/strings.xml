@@ -49,6 +49,8 @@
     <string name="valaltuterina">cm.</string>
     <string name="valfcf">Frecuencia Cardiaca x Minuto</string>
     <string name="valcitaspro">Citas Programadas</string>
+    <string name="valconsejosrecomen">Consejos y Recomendaciones para ti y tu Bebe</string>
+    <string name="valconsejosr">Consejos y Recomendaciones Para tu cuidado en esta Pronta llegada de tu Bebe!!!</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>

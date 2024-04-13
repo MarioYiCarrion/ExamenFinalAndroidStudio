@@ -5,22 +5,29 @@
     android:id="@+id/cvcitasvista"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="4dp"
+    android:background="#EFBC9B"
+    android:backgroundTint="#FBF3D5"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9B4444">
 
         <TextView
             android:id="@+id/tvfechacita"
             android:layout_width="136dp"
             android:layout_height="77dp"
             android:layout_marginStart="8dp"
+            android:drawableStart="@drawable/baseline_date_range_24"
+            android:drawableTint="#D04848"
             android:gravity="center"
             android:text="TextView"
             android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +37,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="4dp"
+            android:drawableStart="@drawable/baseline_person_pin_24"
+            android:drawableTint="#7BC9FF"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvfechacita"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +51,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="4dp"
+            android:drawableStart="@drawable/baseline_medical_services_24"
+            android:drawableTint="#7BC9FF"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvfechacita"
             app:layout_constraintTop_toBottomOf="@+id/tvcitanombre" />
@@ -52,7 +65,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="4dp"
+            android:drawableStart="@drawable/baseline_medical_information_24"
+            android:drawableTint="#7BC9FF"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvfechacita"
             app:layout_constraintTop_toBottomOf="@+id/tvcitaespecialidad" />
@@ -63,7 +79,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:layout_marginEnd="4dp"
+            android:drawableStart="@drawable/baseline_local_hospital_24"
+            android:drawableTint="#7BC9FF"
             android:text="TextView"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvfechacita"
             app:layout_constraintTop_toBottomOf="@+id/tvcitamedico" />
