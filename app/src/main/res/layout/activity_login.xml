@@ -22,15 +22,15 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="420dp"
-        android:layout_height="344dp"
+        android:layout_width="match_parent"
+        android:layout_height="455dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="21dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="-30dp"
-        app:srcCompat="@drawable/logogin" />
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        app:srcCompat="@drawable/logotitulo" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutUsername"
