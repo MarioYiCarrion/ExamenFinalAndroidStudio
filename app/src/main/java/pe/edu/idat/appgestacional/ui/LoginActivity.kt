@@ -78,6 +78,7 @@ class LoginActivity : AppCompatActivity() {
                             editor.remove("username")
                             editor.remove("password")
                             editor.apply()
+
                         }
                         action()
                         finish()
