@@ -129,6 +129,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="3dp"
-        app:srcCompat="@drawable/logotitulo" />
+        app:srcCompat="@drawable/logogin" />
 
 </RelativeLayout>
