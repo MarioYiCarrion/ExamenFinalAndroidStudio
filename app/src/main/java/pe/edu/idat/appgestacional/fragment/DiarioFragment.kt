@@ -62,31 +62,33 @@ class DiarioFragment : Fragment() {
         return view
     }
 
-    private fun guardarDiario(){
+    private fun guardarDiario() {
         val fechaRegistro = tvdiariofecha.text.toString()
         val sintomas = etdiariosintomas.text.toString()
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
-        if(userId != null){
+        if (userId != null && sintomas.isNotEmpty()) {
             val diarioSintomas = Diario(fechaRegistro, sintomas, userId)
-
             val diarioSintomasKey = databaseReference.push().key
 
-            if(diarioSintomasKey != null){
+            if (diarioSintomasKey != null) {
                 databaseReference.child(diarioSintomasKey).setValue(diarioSintomas)
-                    .addOnSuccessListener{
-                        Snackbar.make(requireView(), "Sintomas Guardados Correctamente", Snackbar.LENGTH_LONG).show()
+                    .addOnSuccessListener {
+                        Snackbar.make(requireView(), "Síntomas guardados correctamente", Snackbar.LENGTH_LONG).show()
+                        // Limpiar campos después de guardar
+                        etdiariosintomas.text.clear()
                     }
-                    .addOnFailureListener{
-                        Snackbar.make(requireView(), "Error al guardar Sintomas", Snackbar.LENGTH_LONG).show()
+                    .addOnFailureListener {
+                        Snackbar.make(requireView(), "Error al guardar los síntomas: ${it.message}", Snackbar.LENGTH_LONG).show()
                     }
+            } else {
+                Snackbar.make(requireView(), "Error al generar la clave para el diario de síntomas", Snackbar.LENGTH_LONG).show()
             }
-        }else{
-            Snackbar.make(requireView(), "Usuario no autenticado", Snackbar.LENGTH_LONG).show()
+        } else {
+            Snackbar.make(requireView(), "Por favor, ingrese los síntomas", Snackbar.LENGTH_LONG).show()
         }
-
-
     }
+
 
     private fun registrarDiarios() {
         val fechaRegistroDiario = tvdiariofecha.text.toString()
@@ -151,4 +153,5 @@ class DiarioFragment : Fragment() {
             Toast.makeText(requireContext(), "Por favor completa todos los campos", Toast.LENGTH_LONG).show()
         }
     }
+
 }
