@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.principalFragment, R.id.seguimientoFragment, R.id.citasFragment,
                 R.id.medicionyPruebasFragment, R.id.diarioFragment, R.id.consejosFragment,
-                R.id.recordatoriosyAlertasFragment
+                R.id.recordatoriosyAlertasFragment, R.id.historialCitasFragment
             ), drawerLayout
         )
 

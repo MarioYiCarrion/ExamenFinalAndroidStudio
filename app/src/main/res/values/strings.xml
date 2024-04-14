@@ -51,6 +51,9 @@
     <string name="valcitaspro">Citas Programadas</string>
     <string name="valconsejosrecomen">Consejos y Recomendaciones para ti y tu Bebe</string>
     <string name="valconsejosr">Consejos y Recomendaciones Para tu cuidado en esta Pronta llegada de tu Bebe!!!</string>
+    <string name="valhistorialcitas">HISTORIAL DE CITAS</string>
+    <string name="Historial">Historia de Citas</string>
+    <string name="fragment_historial">Historial de Citas</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>
