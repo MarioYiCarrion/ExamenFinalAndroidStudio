@@ -28,7 +28,7 @@ class OlvidoClaveActivity : AppCompatActivity() {
         if(!TextUtils.isEmpty(correo)){
             auth.sendPasswordResetEmail(correo)
                 .addOnCompleteListener(this){
-                    task ->
+                        task ->
                     if(task.isSuccessful){
                         Toast.makeText(this,"Se envio Correo para Cambio de Clave", Toast.LENGTH_LONG).show()
                         startActivity(Intent(this, LoginActivity::class.java))
