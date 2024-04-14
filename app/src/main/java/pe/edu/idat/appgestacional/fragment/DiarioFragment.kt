@@ -89,8 +89,7 @@ class DiarioFragment : Fragment() {
         }
     }
 
-<<<<<<< HEAD
-=======
+
     private fun registrarDiarios() {
         val fechaRegistroDiario = tvdiariofecha.text.toString()
         val sintomas = etdiariosintomas.text.toString()
@@ -154,5 +153,5 @@ class DiarioFragment : Fragment() {
             Toast.makeText(requireContext(), "Por favor completa todos los campos", Toast.LENGTH_LONG).show()
         }
     }
->>>>>>> 728e3afc3ac39293991008a2d2e24dfa1021f83f
+
 }

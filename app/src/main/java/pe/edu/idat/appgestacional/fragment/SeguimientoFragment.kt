@@ -1,10 +1,17 @@
+package pe.edu.idat.appgestacional.fragment
+
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.DatePicker
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +30,8 @@ import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
 class SeguimientoFragment : Fragment() {
 
@@ -34,6 +42,7 @@ class SeguimientoFragment : Fragment() {
     private lateinit var btnRegistrar: Button
     private lateinit var tvfecha: TextView
     private lateinit var spmedico: Spinner
+
 
     private lateinit var databaseReference: DatabaseReference
 
@@ -75,14 +84,16 @@ class SeguimientoFragment : Fragment() {
                 spmedico.adapter = adapter
             } catch (e: Exception) {
                 e.printStackTrace()
-                // Handle errors
+                // Manejar errores
             }
         }
 
-        // Set current date to the EditText
+        // Obtener la fecha actual
         val currentDate = Calendar.getInstance()
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         val fechaActual = sdf.format(currentDate.time)
+
+        // Establecer la fecha actual en el EditText
         tvfecha.text = fechaActual
 
         ultimaReglaEditText.setOnClickListener {
@@ -129,7 +140,7 @@ class SeguimientoFragment : Fragment() {
     private fun calcularFPP() {
         val fppCalendar = Calendar.getInstance().apply {
             time = ultimaReglaCalendar.time
-            add(Calendar.DAY_OF_YEAR, 280) // Add 280 days (40 weeks)
+            add(Calendar.DAY_OF_YEAR, 280) // Sumar 280 días (40 semanas)
         }
 
         val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
@@ -144,75 +155,48 @@ class SeguimientoFragment : Fragment() {
         semanaGestacionTextView.text = "Tienes $diffWeeks Semanas de Gestacion"
     }
 
-    private fun validarCampos(): Boolean {
-        // Obtener los valores de los campos de entrada
+    private fun guardarInformacion() {
         val fechaCita = tvfecha.text.toString()
         val ultimaRegla = ultimaReglaEditText.text.toString()
+        val fpp = fppTextView.text.toString()
+        val semanaGestacion = semanaGestacionTextView.text.toString()
         val citaMedica = citaMedicaEditText.text.toString()
+        val medicoSeleccionado = spmedico.selectedItem.toString()
 
-        // Verificar si algún campo está vacío
-        val camposVacios = fechaCita.isBlank() || ultimaRegla.isBlank() || citaMedica.isBlank()
+        // Obtener el ID del usuario actualmente autenticado
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
 
-        // Devolver true si no hay campos vacíos, false si hay al menos uno vacío
-        if (camposVacios) {
-            Log.d("ValidarCampos", "Campos vacíos: fechaCita=$fechaCita, ultimaRegla=$ultimaRegla, citaMedica=$citaMedica")
-        } else {
-            Log.d("ValidarCampos", "Todos los campos están completos")
-        }
+        if (userId != null) {
+            val seguimiento = Seguimiento(fechaCita, ultimaRegla, fpp, semanaGestacion, citaMedica, medicoSeleccionado, userId)
 
-        return !camposVacios
-    }
+            val seguimientoKey = databaseReference.push().key
 
-    private fun guardarInformacion() {
-        Log.d("GuardarInformacion", "Llamando a guardarInformacion()")
-        if (validarCampos()) {
-            Log.d("GuardarInformacion", "Campos validados, procediendo a guardar información.")
-
-            // Obtener el ID de usuario actual
-            val userId = FirebaseAuth.getInstance().currentUser?.uid
-
-            if (userId != null) {
-                // Obtener la entrada del usuario
-                val fechaCita = tvfecha.text.toString()
-                val ultimaRegla = ultimaReglaEditText.text.toString()
-                val fpp = fppTextView.text.toString()
-                val semanaGestacion = semanaGestacionTextView.text.toString()
-                val citaMedica = citaMedicaEditText.text.toString()
-                val medicoSeleccionado = spmedico.selectedItem.toString()
-
-                val seguimiento = Seguimiento(fechaCita, ultimaRegla, fpp, semanaGestacion, citaMedica, medicoSeleccionado, userId)
-
-                val seguimientoKey = databaseReference.push().key
-
-                if (seguimientoKey != null) {
-                    databaseReference.child(seguimientoKey).setValue(seguimiento)
-                        .addOnSuccessListener {
-                            Snackbar.make(requireView(), "Información guardada correctamente", Snackbar.LENGTH_LONG).show()
-                        }
-                        .addOnFailureListener {
-                            Snackbar.make(requireView(), "Error al guardar la información", Snackbar.LENGTH_LONG).show()
-                        }
-                }
-            } else {
-                Log.d("GuardarInformacion", "Usuario no autenticado, no se guarda la información.")
-                Snackbar.make(requireView(), "Por favor, inicia sesión para guardar la información", Snackbar.LENGTH_LONG).show()
+            if (seguimientoKey != null) {
+                databaseReference.child(seguimientoKey).setValue(seguimiento)
+                    .addOnSuccessListener {
+                        Snackbar.make(requireView(), "Información guardada correctamente", Snackbar.LENGTH_LONG).show()
+                    }
+                    .addOnFailureListener {
+                        Snackbar.make(requireView(), "Error al guardar la información", Snackbar.LENGTH_LONG).show()
+                    }
             }
         } else {
-            Log.d("GuardarInformacion", "Al menos un campo está vacío, no se guarda la información.")
+            Snackbar.make(requireView(), "Usuario no autenticado", Snackbar.LENGTH_LONG).show()
         }
     }
 
-
     private fun registrarInformacion() {
-        if (validarCampos()) {
-            // Get user input
-            val fechaCita = tvfecha.text.toString()
-            val ultimaRegla = ultimaReglaEditText.text.toString()
-            val fpp = fppTextView.text.toString()
-            val semanaGestacion = semanaGestacionTextView.text.toString()
-            val citaMedica = citaMedicaEditText.text.toString()
-            val medicoSeleccionado = "marioyicarrion@gmail.com"
-            val id = ""
+        val fechaCita = tvfecha.text.toString()
+        val ultimaRegla = ultimaReglaEditText.text.toString()
+        val fpp = fppTextView.text.toString()
+        val semanaGestacion = semanaGestacionTextView.text.toString()
+        val citaMedica = citaMedicaEditText.text.toString()
+        val medicoSeleccionado = "marioyicarrion@gmail.com"
+        val id = ""
+
+        // Verificar que los campos no estén vacíos
+        if (fechaCita.isNotBlank() && ultimaRegla.isNotBlank() && fpp.isNotBlank() &&
+            semanaGestacion.isNotBlank() && citaMedica.isNotBlank() && medicoSeleccionado.isNotBlank()) {
 
             val seguimiento = JSONObject().apply {
                 put("id", id)
@@ -223,6 +207,7 @@ class SeguimientoFragment : Fragment() {
                 put("citaMedica", citaMedica)
                 put("userId", medicoSeleccionado)
             }
+
 
             GlobalScope.launch(Dispatchers.IO) {
                 val url = URL("https://nodejs-mysql-restapi-test-production-895d.up.railway.app/api/seguimientos")
@@ -262,4 +247,6 @@ class SeguimientoFragment : Fragment() {
             Toast.makeText(requireContext(), "Por favor completa todos los campos", Toast.LENGTH_LONG).show()
         }
     }
+
+
 }
