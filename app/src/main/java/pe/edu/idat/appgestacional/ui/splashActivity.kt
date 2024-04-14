@@ -18,20 +18,16 @@ class splashActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_splash)
 
-        // Inicializar la vista ivsplash
+
         ivsplash = findViewById(R.id.ivsplash)
 
-        // Cargar y mostrar el GIF utilizando Glide
+
         Glide.with(this)
             .asGif()
-
-            .load(R.drawable.splash5) // Reemplaza "splash" por el nombre de tu archivo GIF en el directorio res/drawable
-
-            .load(R.drawable.splash5) // Reemplaza "splash" por el nombre de tu archivo GIF en el directorio res/drawable
-
+            .load(R.drawable.splash1) // Reemplaza "splash" por el nombre de tu archivo GIF en el directorio res/drawable
             .into(ivsplash)
 
-        // Esperar 10 segundos antes de iniciar LoginActivity
+
         Handler(Looper.getMainLooper()).postDelayed({
             startActivity(Intent(applicationContext, LoginActivity::class.java))
             finish()
