@@ -26,6 +26,12 @@
             android:id="@+id/diarioFragment"
             android:icon="@drawable/diario"
             android:title="@string/menu_diario" />
+
+        <item
+            android:id="@+id/historialCitasFragment"
+            android:icon="@drawable/baseline_app_registration_24"
+            android:title="@string/Historial" />
+
         <item
             android:id="@+id/extras"
             android:title="Extras">

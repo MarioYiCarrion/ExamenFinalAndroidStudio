@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvhistorialcitas"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#EFBC9B"
+    android:backgroundTint="#FBF3D5"
+    app:cardBackgroundColor="#0C0C0C"
+    app:cardCornerRadius="15sp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9B4444">
+
+        <FrameLayout
+            android:id="@+id/frameLayoutFecha"
+            android:layout_width="155dp"
+            android:layout_height="0dp"
+            android:background="@drawable/border_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvfechahistorialcita"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_date_range_24"
+                android:drawableTint="#D04848"
+                android:gravity="center"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutNombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvnombrehistorial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/baseline_person_pin_24"
+                android:drawableTint="#7BC9FF"
+                android:text="TextView"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutSemana"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutNombre">
+
+            <TextView
+                android:id="@+id/tvsemanahistorial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/baseline_date_range_24"
+                android:drawableTint="#7BC9FF"
+                android:text="TextView"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutCita"
+            android:layout_width="0dp"
+            android:layout_height="81dp"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutSemana">
+
+            <TextView
+                android:id="@+id/tvcitahistorial"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/citas"
+                android:drawableTint="#7BC9FF"
+                android:text="TextView"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

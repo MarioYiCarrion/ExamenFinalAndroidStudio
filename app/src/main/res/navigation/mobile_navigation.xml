@@ -39,4 +39,9 @@
         android:name="pe.edu.idat.appgestacional.fragment.RecordatoriosyAlertasFragment"
         android:label="@string/menu_recordatorios"
         tools:layout="@layout/fragment_recordatoriosy_alertas" />
+    <fragment
+        android:id="@+id/historialCitasFragment"
+        android:name="pe.edu.idat.appgestacional.fragment.HistorialCitasFragment"
+        android:label="@string/fragment_historial"
+        tools:layout="@layout/fragment_historial_citas" />
 </navigation>

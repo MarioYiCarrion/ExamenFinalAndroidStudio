@@ -74,25 +74,6 @@ class CitasFragment : Fragment() {
 
         })
 
-        //lista.add(citas("07/04/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/05/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/06/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/07/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/08/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/09/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/10/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/11/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja"))
-        //lista.add(citas("07/12/2024","Esthefania Quevedo Delgado","Ginecologia",
-        //    "Dra. Ramirez","C.I. San Borja ee"))
-        //return lista
     }
 
 }

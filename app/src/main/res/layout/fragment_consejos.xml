@@ -6,16 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ConsejosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/fondo2"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-41dp" />
+        android:src="@drawable/fondo2" />
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/recomendaciones"
+        android:textColor="#9C27B0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerOptions"
@@ -23,36 +33,24 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:layout_marginTop="12dp"
+        android:dropDownSelector="@color/purple_200"
         android:entries="@array/options_array"
-        android:textColor="#FF407D"
+        android:popupBackground="@color/purple_500"
+        android:textColor="#9C27B0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="470dp"
-        android:layout_height="584dp"
-        android:src="@drawable/iconoss"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="398dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/valconsejosr"
-        android:textAlignment="center"
-        android:textColor="#FF407D"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/elembarazo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/background_image" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerOptions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
