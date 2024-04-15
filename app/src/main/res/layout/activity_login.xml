@@ -83,7 +83,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:drawableStart="@drawable/pregunta"
+        android:drawableStart="@drawable/baseline_password_24"
         android:gravity="start"
         android:onClick="olvideclave"
         android:padding="10dp"
@@ -124,12 +124,13 @@
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="257dp"
+        android:layout_height="339dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
-        app:srcCompat="@drawable/logogin" />
+        app:srcCompat="@drawable/logotitulo" />
 
 </RelativeLayout>
