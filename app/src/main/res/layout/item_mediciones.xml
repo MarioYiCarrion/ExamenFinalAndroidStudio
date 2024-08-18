@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvhistorialmediciones"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#EFBC9B"
+    android:backgroundTint="#FBF3D5"
+    app:cardBackgroundColor="#0C0C0C"
+    app:cardCornerRadius="15sp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9B4444">
+
+        <FrameLayout
+            android:id="@+id/frameLayoutFecha"
+            android:layout_width="155dp"
+            android:layout_height="0dp"
+            android:background="@drawable/border_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvfechaderegistrohistorialmed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_date_range_24"
+                android:drawableTint="#D04848"
+                android:gravity="center"
+                android:text="Fecha de Registro"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutMesEmbarazo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvmesembarazohistorialmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/baseline_date_range_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Mes Embarazo"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutTemperatura"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutMesEmbarazo">
+
+            <TextView
+                android:id="@+id/tvtemperaturahistorialmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/baseline_barcode_reader_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Temperatura"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutPeso"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutTemperatura">
+
+            <TextView
+                android:id="@+id/tvpesohistorialmed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_point_of_sale_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Peso"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutAltura"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutPeso">
+
+            <TextView
+                android:id="@+id/tvalturahistorialmed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_straight_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Altura"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutIMC"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutAltura">
+
+            <TextView
+                android:id="@+id/tvimchistorialmed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/mediciones"
+                android:drawableTint="#7BC9FF"
+                android:text="IMC"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutPresionArterial"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutIMC">
+
+            <TextView
+                android:id="@+id/tvpresionarterialhistorialmed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_monitor_heart_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Presión Arterial"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutAlturaUterina"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutPresionArterial">
+
+            <TextView
+                android:id="@+id/tvalturauterina"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_baby_changing_station_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Altura Uterina"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutFrecCardiaca"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutAlturaUterina">
+
+            <TextView
+                android:id="@+id/tvfrecCardiaca"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_heart_broken_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Frecuencia Cardiaca"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutMovFetal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutFrecCardiaca">
+
+            <TextView
+                android:id="@+id/tvmovFetal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_pregnant_woman_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Movimientos Fetales"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutEdema"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutMovFetal">
+
+            <TextView
+                android:id="@+id/tvedema"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_medication_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Edema"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayoutCentroAtencion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/frameLayoutFecha"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutEdema">
+
+            <TextView
+                android:id="@+id/tvcentroatencion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableStart="@drawable/baseline_local_hospital_24"
+                android:drawableTint="#7BC9FF"
+                android:text="Centro de Atención"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

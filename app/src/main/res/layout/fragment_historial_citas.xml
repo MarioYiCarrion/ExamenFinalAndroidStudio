@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/fondo2"
-    tools:context=".fragment.HistorialCitasFragment">
+    tools:context=".View.fragment.HistorialCitasFragment">
 
     <TextView
         android:id="@+id/textView10"

@@ -54,6 +54,12 @@
     <string name="valhistorialcitas">HISTORIAL DE CITAS</string>
     <string name="Historial">Historia de Citas</string>
     <string name="fragment_historial">Historial de Citas</string>
+    <string name="nombreclinica">CAP III Surquillo</string>
+    <string name="valhistorialmediciones">HISTORIAL MEDICIONES</string>
+    <string name="menu_histmediciones">Historial Mediciones y Pruebas</string>
+    <string name="menu_histmedicioes">Historial Mediciones</string>
+    <string name="Historialmed">Historial de Mediciones</string>
+    <string name="hostorialmediciones">Historial de Mediciones</string>
     <string-array name="options_array">
         <item>Mes 1</item>
         <item>Mes 2</item>
