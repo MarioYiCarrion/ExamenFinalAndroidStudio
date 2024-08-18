@@ -7,7 +7,7 @@
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
     android:background="@drawable/fondo2"
-    tools:context=".fragment.MedicionyPruebasFragment">
+    tools:context=".View.fragment.MedicionyPruebasFragment">
 
     <TextView
         android:id="@+id/textView12"
